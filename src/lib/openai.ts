@@ -15,7 +15,6 @@ export async function getEmbedding(text: string) {
         model: 'text-embedding-ada-002',
         input: text,
     });
-    console.log(response);
 
     const embedding = response.data[0].embedding;
 
@@ -23,6 +22,6 @@ export async function getEmbedding(text: string) {
         throw Error('Error while genrating embedding.');
     }
 
-    console.log(embedding);
+    // console.log(embedding);
     return embedding;
 }

@@ -1,6 +1,6 @@
 import OpenAI from 'openai';
 
-const apiKey1 = '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';
+const apiKey1 = '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';
 
 if (!apiKey1) {
     throw new Error('OpenAI key is not available');

@@ -52,13 +52,25 @@ export default function AIChatBot({ open, onClose }: AiChatBoxProps) {
                     ))}
                 </div>
             </div>
-            <form onSubmit={handleSubmit} className="mb-2 flex gap-1  ">
+            <form onSubmit={handleSubmit} className="mb-2 flex gap-1 ">
                 <Input
                     value={input}
                     onChange={handleInputChange}
                     placeholder="type here ..."
+                    maxLength={150}
+                    className={
+                        input.length > 149
+                            ? 'border-none focus-visible:ring-orange-500 focus-visible:outline-none focus-visble:border-none'
+                            : 'border-blue-500 focus:border-none focus-visible:outline-none focus-visble:border-none focus-visible:ring-blue-400'
+                    }
+                    // className="border-none focus-visible:ring-red-500 focus-visible:outline-none focus-visble:border-none "
                 />
-                <Button type="submit">Send</Button>
+                <Button
+                    disabled={isLoading || input.length > 149}
+                    type="submit"
+                >
+                    Send
+                </Button>
             </form>
         </div>
     );
@@ -71,14 +83,14 @@ function ChatMessage({ message: { role, content } }: { message: Message }) {
 
     const colorClass =
         role === 'user'
-            ? 'bg-blue-500 text-white max-w-[80%]'
-            : 'bg-gray-100 max-w-[80%]';
+            ? 'bg-blue-500 text-white max-w-[70%]'
+            : 'bg-gray-100 max-w-[70%]';
     return (
         <div className={`   w-full mb-2 mt-2`}>
             {/* <div className={` ${alignClass} `}>{displayRole}</div> */}
             <div className={` max-w-full ${alignClass} mb-4`}>
                 <div
-                    className={` p-2 mx-2 ${colorClass} rounded-sm max-w-full ${alignClass} mb-4`}
+                    className={`p-2 mx-2 ${colorClass} rounded-sm max-w-full ${alignClass} mb-4`}
                 >
                     {content}
                 </div>

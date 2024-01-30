@@ -1,5 +1,5 @@
 import openai, { getEmbedding } from '@/lib/openai';
-import { edbaIndex } from '@/lib/pinecone';
+// import { edbaIndex } from '@/lib/pinecone';
 import { OpenAIStream, StreamingTextResponse } from 'ai';
 import { ChatCompletionMessage } from 'openai/resources/index.mjs';
 
@@ -15,13 +15,13 @@ export async function POST(req: Request) {
             messagesTruncated.map((message) => message.content).join('\n')
         );
 
-        const userId = 'edbaCourse';
+        // const userId = 'edbaCourse';
 
-        const vectorQueryResponse = await edbaIndex.query({
-            vector: embedding,
-            topK: 1,
-            filter: { userId },
-        });
+        // const vectorQueryResponse = await edbaIndex.query({
+        //     vector: embedding,
+        //     topK: 1,
+        //     filter: { userId },
+        // });
 
         const systemMessage: ChatCompletionMessage = {
             role: 'assistant',
